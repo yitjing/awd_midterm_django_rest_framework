@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+	<body>
+	<h1>Advanced Web development Midterm Rest API</h1>
+	<p>This page is for introducing the midterm assignment to implement Django REST API</p>
+	<h2>Rest Specification</h2>
+	<p>All of the required rest specification will be listed below:</p>
+	<h3>GET Routes</h3>
+	<ul>
+		<li>
+			<a href="/api/protein/A0A016S8J7">api/protein/A0A016S8J7</a>
+			<br>
+			(api/protein/[PROTEIN ID]) Return the protein sequence and all we know about it
+		</li>
+		<li>
+			<a href="/api/pfam/PF00360">api/pfam/PF00360</a>
+			<br>
+			(api/pfam/[PFAM ID]) Return the domain and it's description
+		</li>
+		<li>
+			<a href="/api/proteins/55661">api/proteins/55661</a>
+			<br>
+			(api/proteins/[TAXA ID]) Return a list of all proteins for a given organism
+		</li>
+		<li>
+			<a href="/api/pfams/55661">api/pfams/55661</a>
+			<br>
+			(api/pfams/[TAXA ID]) Return a list of all domains in all the proteins for a given organism.
+		</li>
+		<li>
+			<a href="/api/coverage/A0A016S8J7">api/coverage/A0A016S8J7</a>
+			<br>
+			(api/coverage/[PROTEIN ID]) Return the domain coverage for a given protein.
+		</li>
+	</ul>
+	
+	<h3>Post Routes</h3>
+	<ul>
+		<li>
+			<a href="/api/protein/">api/protein/</a>
+			<br>
+			(api/protein/) Add a new record
+		</li>
+	</ul>
+
+	<h1>Add Protein into Database</h1>
+	<p>This is used as an option to make a post-request to add a new record of protein in the Django REST framework. The HTML form in the Django REST framework could not display list data.</p>
+	<form action="api/protein/" method="post" enctype="application/json">
+		{% csrf_token %}
+		<h3>Protein</h3>
+		Protein id:<br>
+		<input name="protein_id" value="A0A016JK19">
+		<br><br>
+		Protein sequence:<br>
+		<input name="sequence" value="KFBKJSDBFKDIWEBFJBEKMCKDBKDKDOFEWLXKSNSKCNJCNEJB">
+		<br><br>
+		Protein Length:<br>
+		<input name="protein_length" value="121">
+		<br><br>
+		
+		<h3>Taxonomy</h3>
+		Taxa id:<br>
+		<input name="taxonomy.taxa_id" value="53328">
+		<br><br>
+		Clade:<br>
+		<input name="taxonomy.clade" value="E">
+		<br><br>
+		Genus:<br>
+		<input name="taxonomy.genus" value="Ancylostoma">
+		<br><br>
+		Species:<br>
+		<input name="taxonomy.species" value="ceylanicum">
+		
+		<h3>Domain</h3>
+		Domain id:<br>
+		<input name="domains[0]domain_id" value="PF17219">
+		<br><br>
+		Domain pFam description:<br>
+		<input name="domains[0]d_pfam_description" value="Yaf2/RYBPC-terminalbindingmotif">
+		<br><br>
+		Description:<br>
+		<input name="domains[0]d_description" value="Yaf2/RYBP C-terminal binding motif">
+		<br><br>
+		Start Coordinate:<br>
+		<input name="domains[0]start_coor" value="209">
+		<br><br>
+		End Coordinate:<br>
+		<input name="domains[0]end_coor" value="259">
+		<br><br>
+		<input type="submit" value="Submit">
+	</form>
+
+	</body>
+</html>
